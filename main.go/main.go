@@ -1,8 +1,11 @@
 package main
 
-import "hangman/random"
+import (
+	"fmt"
+	"hangman/random"
+)
 
 func main() {
-	random.Motsaleatoire()
-	random.revelelettres()
+	mot := random.Motsaleatoire()
+	fmt.Println(random.Revelelettres(mot, 2))
 }

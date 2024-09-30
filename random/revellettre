@@ -1,8 +1,8 @@
-package random
+
 
 import "math/rand"
 
-func revelelettres(mot string, nbLettres int) string {
+func Revelelettres(mot string, nbLettres int) string {
 	runes := []rune(mot)
 	longueurMot := len(runes)
 
