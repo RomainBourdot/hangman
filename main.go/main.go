@@ -1,11 +1,7 @@
 package main
 
-import (
-	"fmt"
-	"hangman/random"
-)
+import "hangman/jeu"
 
 func main() {
-	mot := random.Motsaleatoire()
-	fmt.Println(random.Revelelettres(mot, 2))
+	jeu.Jeu()
 }
