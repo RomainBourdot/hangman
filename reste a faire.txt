@@ -1,0 +1,6 @@
+ASCII
+MOT COMPLET
+
+LETTRES DEJA TROUVEES :
+Créer une chaine de rune -> Si la lettre choisis par le joueur n'est pas la bonne. On ajoute la lettre à la chaine de rune.
+Dans la fonction de jeu montrer la chaine de rune (en string)

@@ -6,8 +6,25 @@ import (
 	"time"
 )
 
-var Mot = Motsaleatoire()
+var Mot = string(CorrectionMot())
 var DifficultyCounter int
+var Motcache = Difficultychoix()
+var Counter int = 6
+var lettrefausse []string
+
+func CorrectionMot() []rune {
+	mottemp := Motsaleatoire()
+	var motfinal []rune
+
+	for _, v := range mottemp {
+		if v == 13 {
+			break
+		} else {
+			motfinal = append(motfinal, v)
+		}
+	}
+	return motfinal
+}
 
 func Revelelettres() []rune {
 	var hiddenword []rune
@@ -45,8 +62,9 @@ func Revelelettres() []rune {
 	}
 	return hiddenword
 }
-func Difficultychoix() {
+func Difficultychoix() []rune {
 	var input int
+	var motchoisis []rune
 
 	fmt.Println("Choisissez votre difficulté entre 1 ou 2 :")
 	fmt.Println("1. Difficulté Facile (vous révélez 2 lettres)")
@@ -55,12 +73,35 @@ func Difficultychoix() {
 	switch input {
 	case 1:
 		DifficultyCounter = 2
-		Revelelettres()
+		motchoisis = Revelelettres()
 	case 2:
 		DifficultyCounter = 1
-		Revelelettres()
+		motchoisis = Revelelettres()
 	}
-	fmt.Print("Très bien, votre difficulté est bien enregistrée.")
-	time.Sleep(5 * time.Second)
+	fmt.Println("Très bien, votre difficulté est bien enregistrée.")
+	time.Sleep(3 * time.Second)
+	return motchoisis
+}
 
+func Game() {
+	var lettre string
+	lettretrouve := false
+
+	fmt.Println("\n\nProposez une lettre: ")
+	fmt.Scan(&lettre)
+	for indexmot, v := range Mot {
+		if lettre == string(v) {
+			lettretrouve = true
+			for indexmotcache := range Motcache {
+				if indexmot == indexmotcache {
+					Motcache[indexmotcache] = v
+					break
+				}
+			}
+		}
+	}
+	if !lettretrouve {
+
+		Counter--
+	}
 }
