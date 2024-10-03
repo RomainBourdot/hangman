@@ -89,19 +89,26 @@ func Game() {
 
 	fmt.Println("\n\nProposez une lettre: ")
 	fmt.Scan(&lettre)
-	for indexmot, v := range Mot {
-		if lettre == string(v) {
-			lettretrouve = true
-			for indexmotcache := range Motcache {
-				if indexmot == indexmotcache {
-					Motcache[indexmotcache] = v
-					break
+	if len(lettre) > 1 {
+		if lettre == Mot {
+		} else {
+			Counter -= 2
+		}
+	} else {
+		for indexmot, v := range Mot {
+			if lettre == string(v) {
+				lettretrouve = true
+				for indexmotcache := range Motcache {
+					if indexmot == indexmotcache {
+						Motcache[indexmotcache] = v
+						break
+					}
 				}
 			}
 		}
-	}
-	if !lettretrouve {
-
-		Counter--
+		if !lettretrouve {
+			lettrefausse = append(lettrefausse, lettre)
+			Counter--
+		}
 	}
 }
