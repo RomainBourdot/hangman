@@ -3,6 +3,7 @@ package random
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 var Mot = Motsaleatoire()
@@ -45,10 +46,21 @@ func Revelelettres() []rune {
 	return hiddenword
 }
 func Difficultychoix() {
-	for {
-		fmt.Println("Choisissez votre difficulté entre 1 ou 2 :")
-		fmt.Println("1. Difficultés Facile ( vous révelez 2 lettres)")
-		fmt.Println("2. Difficultés Difficile ( vous révelez 1 lettre)")
-		fmt.Print("vous avez choisi :")
+	var input int
+
+	fmt.Println("Choisissez votre difficulté entre 1 ou 2 :")
+	fmt.Println("1. Difficulté Facile (vous révélez 2 lettres)")
+	fmt.Println("2. Difficulté Difficile (vous révélez 1 lettre)")
+	fmt.Scan(&input)
+	switch input {
+	case 1:
+		DifficultyCounter = 2
+		Revelelettres()
+	case 2:
+		DifficultyCounter = 1
+		Revelelettres()
 	}
+	fmt.Print("Très bien, votre difficulté est bien enregistrée.")
+	time.Sleep(5 * time.Second)
+
 }
