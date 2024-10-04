@@ -24,10 +24,10 @@ func Dessinparvie() string {
 		draw = ` 
      _______
     |       |
-    |       
+    |       O
     |      /|\
     |       |
-    |      / \
+    |      / 
   __|__
  |     |________
  |              |
@@ -37,10 +37,10 @@ func Dessinparvie() string {
 		draw = ` 
      _______
     |       |
-    |       
+    |       O
     |      /|\
     |       |
-    |      / 
+    |      
   __|__
  |     |________
  |              |
@@ -50,9 +50,9 @@ func Dessinparvie() string {
 		draw = ` 
      _______
     |       |
-    |       
+    |       O
     |      /|\
-    |       |
+    |       
     |      
   __|__
  |     |________
@@ -63,9 +63,9 @@ func Dessinparvie() string {
 		draw = ` 
      _______
     |       |
-    |       
+    |       O
     |      /|
-    |       |
+    |       
     |      
   __|__
  |     |________
@@ -76,9 +76,10 @@ func Dessinparvie() string {
 		draw = ` 
      _______
     |       |
+    |       O
     |       
-    |       |
-    |       |
+    |
+    |       
     |      
   __|__
  |     |________

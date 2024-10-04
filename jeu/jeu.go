@@ -10,7 +10,6 @@ import (
 func Jeu() {
 	for random.Mot != string(random.Motcache) && random.Vies > 0 {
 		fmt.Print("\033[H\033[2J")
-		fmt.Println(random.Mot)
 		fmt.Printf("\nCompteur:\033[96m %v\033[0m", random.Vies)
 		fmt.Println(dessin.Dessinparvie())
 		fmt.Printf("\n\033[90mMot\033[0m: %v", string(random.Motcache))

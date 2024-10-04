@@ -110,7 +110,7 @@ func Game() {
 		}
 
 		if lettre != Mot {
-			fmt.Println("Votre mot est incorrect. Vous perdez 2 vies.")
+			fmt.Println("\033[31mVotre mot est incorrect. Vous perdez 2 vies.\033[0m")
 			time.Sleep(2 * time.Second)
 			Vies -= 2
 		}
