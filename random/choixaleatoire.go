@@ -15,7 +15,7 @@ func Motsaleatoire() string {
 	}
 
 	words := strings.Split(data, "\n")
-	n := rand.Intn(83)
+	n := rand.Intn(82)
 	word := ""
 	for i, elem := range words {
 		if i == n {

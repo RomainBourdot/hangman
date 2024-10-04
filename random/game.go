@@ -10,7 +10,7 @@ var Mot = string(CorrectionMot())
 var DifficultyCounter int
 var Motcache = Difficultychoix()
 var Counter int = 6
-var lettrefausse []string
+var Lettrefausse []string
 
 func CorrectionMot() []rune {
 	mottemp := Motsaleatoire()
@@ -65,13 +65,19 @@ func Revelelettres() []rune {
 func Difficultychoix() []rune {
 	var input int
 	var motchoisis []rune
-
-	fmt.Println("Bienvenue dans le jeu du pendu, amusez vous !")
+	fmt.Print("\033[H\033[2J")
+	fmt.Println("\033[32mBienvenue dans le jeu du pendu, amusez-vous bien!\033[0m")
 	fmt.Printf("Choisissez votre difficulté entre 1 ou 2 :")
-	fmt.Printf("\n\n1. Difficulté Facile (vous révélez 2 lettres)")
-	fmt.Printf("\n2. Difficulté Difficile (vous révélez 1 lettre)\n")
+	fmt.Printf("\n\n\033[34m1. Difficulté Facile (vous révélez 2 lettres)\033[0m")
+	fmt.Printf("\n\033[34m2. Difficulté Difficile (vous révélez 1 lettre)\033[0m\n")
 	fmt.Println("Votre choix : ")
 	fmt.Scan(&input)
+
+	for input != 1 && input != 2 {
+		fmt.Println("Choix invalide réessayez ! ")
+		fmt.Scan(&input)
+	}
+
 	switch input {
 	case 1:
 		DifficultyCounter = 2
@@ -79,9 +85,6 @@ func Difficultychoix() []rune {
 	case 2:
 		DifficultyCounter = 1
 		motchoisis = Revelelettres()
-	default:
-		fmt.Println("Choix invalide, le mode Difficile est activé par défaut.")
-		DifficultyCounter = 1
 	}
 	fmt.Println("Très bien, votre difficulté est bien enregistrée.")
 	time.Sleep(2 * time.Second)
@@ -91,18 +94,24 @@ func Difficultychoix() []rune {
 func Game() {
 	var lettre string
 	lettretrouve := false
-
 	fmt.Println("\n\nProposez une lettre: ")
 	fmt.Scan(&lettre)
+
+	for _, v := range Lettrefausse {
+		if v == lettre {
+			fmt.Println("Lettre déjà trouvé ! ")
+			fmt.Scan(&lettre)
+		}
+	}
+
 	if len(lettre) > 1 {
 		if lettre == Mot {
-			fmt.Println("\nFélicitations, vous avez trouvé le mot entier !")
 			Motcache = []rune(Mot)
 		}
 
 		if lettre != Mot {
-			lettrefausse = append(lettrefausse, lettre)
 			fmt.Println("Votre mot est incorrect. Vous perdez 2 vies.")
+			time.Sleep(2 * time.Second)
 			Counter -= 2
 		}
 	} else {
@@ -118,16 +127,10 @@ func Game() {
 			}
 		}
 		if !lettretrouve {
-			lettrefausse = append(lettrefausse, lettre)
+			fmt.Print("\033[31mLettre incorrecte. Vous perdez 1 vie.\033[0m\n")
+			time.Sleep(2 * time.Second)
+			Lettrefausse = append(Lettrefausse, lettre)
 			Counter--
-			fmt.Printf("Lettre incorrecte. Vous perdez 1 vie.\n")
-		}
-		if string(Motcache) == string(Mot) {
-			fmt.Println("Bravo ! Vous avez gagné.")
-		} else if Counter <= 0 {
-			fmt.Println("\nDésolé, vous avez perdu toutes vos vies.")
-			fmt.Printf("Le mot correct était : %v\n", Mot)
-			return
 		}
 	}
 }
