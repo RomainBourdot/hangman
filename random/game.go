@@ -9,7 +9,7 @@ import (
 var Mot = string(CorrectionMot())
 var DifficultyCounter int
 var Motcache = Difficultychoix()
-var Counter int = 6
+var Vies int = 6
 var Lettrefausse []string
 
 func CorrectionMot() []rune {
@@ -112,7 +112,7 @@ func Game() {
 		if lettre != Mot {
 			fmt.Println("Votre mot est incorrect. Vous perdez 2 vies.")
 			time.Sleep(2 * time.Second)
-			Counter -= 2
+			Vies -= 2
 		}
 	} else {
 		for indexmot, v := range Mot {
@@ -130,7 +130,7 @@ func Game() {
 			fmt.Print("\033[31mLettre incorrecte. Vous perdez 1 vie.\033[0m\n")
 			time.Sleep(2 * time.Second)
 			Lettrefausse = append(Lettrefausse, lettre)
-			Counter--
+			Vies--
 		}
 	}
 }

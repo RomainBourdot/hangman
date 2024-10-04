@@ -6,7 +6,7 @@ import (
 
 func Dessinparvie() string {
 	var draw string
-	switch random.Counter {
+	switch random.Vies {
 	case 0:
 		draw = ` 
      _______
